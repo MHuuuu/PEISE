@@ -56,6 +56,26 @@
 				width:100%;
 				height: auto;
 			}
+			.img-div{
+				height: 100%;
+				width: 20%;
+				float: left;
+				text-align: center;
+				vertical-align: middle;
+			}
+			.img-div img{
+			}
+			.content-div{
+				height: 100%;
+				widows: 80%;
+				float: left;
+/*				background-color: cyan;*/
+			}
+			.content-div p{
+				font-family:STSong;
+				font-size: 20px;
+				font-weight: bold;
+			}
 		</style>
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
@@ -568,7 +588,7 @@
 								<div class="push-10-t font-w600">张三</div>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-lg-2" onClick="show(this)">
-								<img src="assets/img/photos/noHat.png" class="img-illegal"/>
+								<img src="assets/img/photos/noHat.png" class="img-illegal" id="h123"/>
 								<div class="push-10-t font-w600 font-red">未识别</div>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-lg-2" onClick="show(this)">
@@ -594,8 +614,24 @@
 					</div>
                 	<!--END Illegal Image-->
 					<!--Illegal Image Detail-->
-					<div id="spread" style="overflow: hidden;height: 0px;">
-						<div class="block" style="height: 200px"></div>
+					<div id="spread" class="block" style="overflow: hidden;height: 0px;">
+						<div class="block-header">
+							<a class="link-effect" onClick="hide()" style="float: right;cursor: pointer;">收起&nbsp;<i class="si si-arrow-up"></i></a>
+							<h3 class="block-title">违规详细信息</h3>
+						</div>
+						<div class="block-content" style="height: 300px">
+							<div class="img-div">
+								<img src="assets/img/photos/noHat.png" height="90%"/>
+							</div>
+							<div class="content-div">
+								<p></p>	
+								<p>违规人员:张三</p>
+								<p>违规时间:2020-02-02 16:12:45</p>
+								<p>违规记录:未佩戴安全帽而进入危险区域</p>
+								<p></p>
+							</div>
+						</div>
+						
                     </div>
 					<!--END Illegal Image Detail-->
 				</div>
@@ -721,35 +757,31 @@
 			/*速度*/
 			var speed = height/(time/interval)
 			/*点击事件*/
-			btn.onclick = function (e) {
-				btn.disabled = 'disabled'
-				if(!iSpread){
-					var speeds = 0
-					var timer = setInterval(function () {
-						speeds += speed
-						spread.style.height = speeds + 'px'
-						if(parseInt(spread.style.height) >=height){
-							clearTimeout(timer)
-							btn.disabled = ''
-						}
-					},interval)
-	//            this.innerHTML = '收起'
-				}else{
-					var speeds = height
-	//            this.innerHTML = '展开'
-					var timer = setInterval(function () {
-						speeds -= speed
-						spread.style.height = speeds + 'px'
-						if(speeds <= 0){
-							clearTimeout(timer)
-							btn.disabled = ''
-						}
-					},interval)
-				}
-				iSpread = !iSpread
-			}
 			function show(e){
-				
+				//获取div对应的img的id
+				var img_id = e.querySelector("img").id;
+				var speeds = 0
+				spread.style.height = '0px'
+				var timer = setInterval(function () {
+					speeds += speed
+					spread.style.height = speeds + 'px'
+					if(parseInt(spread.style.height) >=height){
+						clearTimeout(timer)
+						btn.disabled = ''
+					}
+				},interval)
+			}
+			function hide(){
+				var speeds = height
+		//            this.innerHTML = '展开'
+				var timer = setInterval(function () {
+					speeds -= speed
+					spread.style.height = speeds + 'px'
+					if(speeds <= 0){
+						clearTimeout(timer)
+						btn.disabled = ''
+					}
+				},interval)
 			}
 		</script>
     </body>
