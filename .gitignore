@@ -1,3 +1,15 @@
+
 # win
-assets/*
-!assets/css/list-style.css
+/assets/*
+
+!/assets/css
+/assets/css/themes
+/assets/css/oneui.css
+
+!/assets/js
+!/assets/js/extra
+/assets/js/app.js
+/assets/js/core
+/assets/js/pages
+/assets/js/plugins
+
